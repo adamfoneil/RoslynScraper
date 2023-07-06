@@ -19,7 +19,7 @@ public class Output
 		/// </summary>
 		public string MemberName { get; set; } = default!;
 		/// <summary>
-		/// method or property body
+		/// C# method or property body
 		/// </summary>
 		public string Body { get; set; } = default!;
 	}
