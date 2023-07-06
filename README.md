@@ -6,5 +6,5 @@ The end goal is for me to be able to provide some metadata to stakeholders of a 
 I picture using this console app with a command line like this:
 
 ```csharp
-RoslynScraper -s "c:\users\anyone\reps\MySolution.sln" -i "IPermissions, IWhatever, ISomethingElse" -o "c:\users\anyone\Desktop\scrapeoutput.json"
+RoslynScraper -s "c:\users\anyone\repos\MySolution.sln" -i "IPermissions, IWhatever, ISomethingElse" -o "c:\users\anyone\Desktop\scrapeoutput.json"
 ```
