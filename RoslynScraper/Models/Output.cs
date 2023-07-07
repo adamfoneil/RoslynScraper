@@ -22,6 +22,10 @@ public class Output
 		/// C# method or property body
 		/// </summary>
 		public string Body { get; set; } = default!;
+		/// <summary>
+		/// specific location in source file where Body is found
+		/// </summary>
+		public SourceLocation? Location { get; set; }
 	}
 }
 
