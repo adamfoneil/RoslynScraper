@@ -7,6 +7,8 @@ public class Input
 	/// </summary>
 	public string SolutionFile { get; set; } = default!;
 
+	public string OutputFile { get; set; } = default!;
+
 	/// <summary>
 	/// what interfaces do I want to inspect?
 	/// </summary>
