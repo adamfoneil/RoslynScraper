@@ -6,6 +6,7 @@ public class Output
 
 	public class Item
 	{
+		public string InterfaceName { get; set; } = string.Empty;
 		/// <summary>
 		/// class namespace
 		/// </summary>

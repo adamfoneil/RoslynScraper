@@ -1,0 +1,338 @@
+[
+  {
+    "InterfaceName": "IAccountService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "AccountService",
+    "MemberName": "GetAsync",
+    "Body": "",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/AccountService.cs",
+      "StartLine": 20,
+      "EndLine": 0
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "ListAsync",
+    "Body": "    {\n        User user = await this.userService.GetOrCreateAsync();\n        return await this.repository.ListAsync(user.Id, email);\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 28,
+      "EndLine": 32
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "ListInvitationsAsync",
+    "Body": "    {\n        User user = await this.userService.GetOrCreateAsync();\n        Contact[] contacts = await this.repository.ListInvitationsAsync(user.Email);\n        return contacts.Select(contact => contact.ToModel()).ToArray();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 34,
+      "EndLine": 39
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "CreateAsync",
+    "Body": "        return await this.repository.ListAsync(user.Id, email);\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 30,
+      "EndLine": 32
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "UpdateAsync",
+    "Body": "    {\n        User user = await this.userService.GetOrCreateAsync();\n        Contact? contact = await this.repository.GetAsync(user.Id, id);\n\n        if (contact == null)\n        {\n            throw new NotFoundException(\"Contact not found.\");\n        }\n\n        if (string.IsNullOrEmpty(request.Nickname))\n        {\n            throw new BadRequestException(\"Nickname is missing.\");\n        }\n\n        contact.Nickname = request.Nickname;\n\n        this.repository.Update(contact);\n        await this.unitOfWork.SaveChangesAsync();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 67,
+      "EndLine": 86
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "GetAsync",
+    "Body": "\n        if (contact == null)\n        {\n            throw new NotFoundException(\"Contact not found.\");\n        }\n\n        if (string.IsNullOrEmpty(request.Nickname))\n        {\n            throw new BadRequestException(\"Nickname is missing.\");\n        }\n\n        contact.Nickname = request.Nickname;\n\n        this.repository.Update(contact);\n        await this.unitOfWork.SaveChangesAsync();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 70,
+      "EndLine": 86
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "GetInvitationAsync",
+    "Body": "    {\n        User user = await this.userService.GetOrCreateAsync();\n        Contact contact = await this.GetContactInvitationAsync(user.Email, id);\n        return contact.ToModel();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 100,
+      "EndLine": 105
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "AcceptInvitationAsync",
+    "Body": "    {\n        User user = await this.userService.GetOrCreateAsync();\n        Contact contact = await this.GetContactInvitationAsync(user.Email, id);\n        this.AcceptInvitation(contact, user);\n        await this.unitOfWork.SaveChangesAsync();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 107,
+      "EndLine": 113
+    }
+  },
+  {
+    "InterfaceName": "IContactService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "ContactService",
+    "MemberName": "DeleteAsync",
+    "Body": "    {\n        Contact contact = await this.GetAsync(id);\n        contact.DeletedDate = DateTime.UtcNow;\n        await this.unitOfWork.SaveChangesAsync();\n    }",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/ContactService.cs",
+      "StartLine": 115,
+      "EndLine": 120
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "GetOrCreateCustomerAsync",
+    "Body": "        string email,\n        string firstName,\n        string lastName);\n\n    Task<bool> GetDirectDepositStatusAsync(string email);\n}",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 11,
+      "EndLine": 17
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "GetDirectDepositStatusAsync",
+    "Body": "}",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 16,
+      "EndLine": 17
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "DCBankCustomerService",
+    "Body": "{\n    Task<DCBankCustomer> GetOrCreateCustomerAsync(\n        string email,\n        string firstName,\n        string lastName);\n\n    Task<bool> GetDirectDepositStatusAsync(string email);\n}",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 9,
+      "EndLine": 17
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "GetOrCreateCustomerAsync",
+    "Body": "        string email,\n        string firstName,\n        string lastName);\n\n    Task<bool> GetDirectDepositStatusAsync(string email);\n}",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 11,
+      "EndLine": 17
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.repository.GetAsync",
+    "Body": "        if (customerEntity == null)\n        {\n            SearchCustomerResponse searchResponse = await this.client.SearchCustomerAsync(new()\n            {\n                Email = email\n            });\n\n            Customer? customer = searchResponse.Item.SingleOrDefault();\n            if (customer == null)\n            {\n                CreateCustomerResponse createResponse = await this.client.CreateCustomerAsync(new()\n                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 42,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "",
+    "Body": "using Zippy.Retail.Api.Data.Entities;\nusing Zippy.Retail.Api.DCBank.Client;\nusing Zippy.Retail.Api.DCBank.Client.Models;\nusing Zippy.Retail.Api.Repositories;\n\nnamespace Zippy.Retail.Api.Services;",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 1,
+      "EndLine": 7
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.client.SearchCustomerAsync",
+    "Body": "            {\n                Email = email\n            });\n\n            Customer? customer = searchResponse.Item.SingleOrDefault();\n            if (customer == null)\n            {\n                CreateCustomerResponse createResponse = await this.client.CreateCustomerAsync(new()\n                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 45,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "searchResponse.Item.SingleOrDefault",
+    "Body": "            if (customer == null)\n            {\n                CreateCustomerResponse createResponse = await this.client.CreateCustomerAsync(new()\n                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 50,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "",
+    "Body": "using Zippy.Retail.Api.Data.Entities;\nusing Zippy.Retail.Api.DCBank.Client;\nusing Zippy.Retail.Api.DCBank.Client.Models;\nusing Zippy.Retail.Api.Repositories;\n\nnamespace Zippy.Retail.Api.Services;",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 1,
+      "EndLine": 7
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.client.CreateCustomerAsync",
+    "Body": "                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 53,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.repository.Add",
+    "Body": "            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 70,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.unitOfWork.SaveChangesAsync",
+    "Body": "        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 71,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "GetDirectDepositStatusAsync",
+    "Body": "}",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 16,
+      "EndLine": 17
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.repository.GetAsync",
+    "Body": "        if (customerEntity == null)\n        {\n            SearchCustomerResponse searchResponse = await this.client.SearchCustomerAsync(new()\n            {\n                Email = email\n            });\n\n            Customer? customer = searchResponse.Item.SingleOrDefault();\n            if (customer == null)\n            {\n                CreateCustomerResponse createResponse = await this.client.CreateCustomerAsync(new()\n                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 42,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "",
+    "Body": "using Zippy.Retail.Api.Data.Entities;\nusing Zippy.Retail.Api.DCBank.Client;\nusing Zippy.Retail.Api.DCBank.Client.Models;\nusing Zippy.Retail.Api.Repositories;\n\nnamespace Zippy.Retail.Api.Services;",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 1,
+      "EndLine": 7
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.client.SearchCustomerAsync",
+    "Body": "            {\n                Email = email\n            });\n\n            Customer? customer = searchResponse.Item.SingleOrDefault();\n            if (customer == null)\n            {\n                CreateCustomerResponse createResponse = await this.client.CreateCustomerAsync(new()\n                {\n                    Email = email,\n                    InteracEmail = email,\n                    FirstName = firstName,\n                    LastName = lastName\n                });\n\n                customer = createResponse.Item;\n            }\n\n            customerEntity = new DCBankCustomer\n            {\n                CustomerNumber = customer.CustomerNumber,\n                Email = email\n            };\n\n            this.repository.Add(customerEntity);\n            await this.unitOfWork.SaveChangesAsync();\n        }\n\n        return customerEntity;\n    }\n",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 45,
+      "EndLine": 76
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "customerResponse.Item.SingleOrDefault",
+    "Body": "",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 89,
+      "EndLine": 0
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "",
+    "Body": "using Zippy.Retail.Api.Data.Entities;\nusing Zippy.Retail.Api.DCBank.Client;\nusing Zippy.Retail.Api.DCBank.Client.Models;\nusing Zippy.Retail.Api.Repositories;\n\nnamespace Zippy.Retail.Api.Services;",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 1,
+      "EndLine": 7
+    }
+  },
+  {
+    "InterfaceName": "IDCBankCustomerService",
+    "Namespace": "Zippy.Retail.Api.Services",
+    "ClassName": "",
+    "MemberName": "this.client.ContactAdrStatusAsync",
+    "Body": "",
+    "Location": {
+      "Path": "/Users/pci/Sites/1.Done/Zippy.Cash/code/Zippy-Retail-Api/Zippy.Retail.Api/Services/DCBankCustomerService.cs",
+      "StartLine": 94,
+      "EndLine": 0
+    }
+  }
+]
