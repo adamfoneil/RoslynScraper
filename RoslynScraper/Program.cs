@@ -25,9 +25,9 @@ namespace RoslynScraper
                 .Select(name => name.Trim())
                 .ToList();
 
-            var outputs = await ScrapeSolution(solutionPath, interfaceNames);
+            var outputs = await ScrapeSolutionAsync(solutionPath, interfaceNames);
             
-            await WriteOutputs(outputs, outputPath);
+            await WriteOutputsAsync(outputs, outputPath);
 
             Console.WriteLine("Done");
         }
@@ -49,7 +49,7 @@ namespace RoslynScraper
         /// <param name="solutionPath">Path to the solution file.</param>
         /// <param name="interfaceNames">List of interface names to search for.</param>
         /// <returns>A list of extracted data items.</returns>
-        private static async Task<List<Output.Item>> ScrapeSolution(string solutionPath, List<string> interfaceNames)
+        private static async Task<List<Output.Item>> ScrapeSolutionAsync(string solutionPath, List<string> interfaceNames)
         {
             if (!MSBuildLocator.IsRegistered)
                 MSBuildLocator.RegisterDefaults();
@@ -60,11 +60,11 @@ namespace RoslynScraper
 
             foreach (var project in solution.Projects)
             {
-                var interfaces = await GetInterfacesFromProject(project, interfaceNames);
+                var interfaces = await GetInterfacesFromProjectAsync(project, interfaceNames);
 
                 foreach (var document in project.Documents)
                 {
-                    var documentInterfaces = await GetInterfacesFromDocument(document, interfaceNames, interfaces);
+                    var documentInterfaces = await GetInterfacesFromDocumentAsync(document, interfaceNames, interfaces);
 
                     outputs.AddRange(documentInterfaces);
                 }
@@ -79,13 +79,13 @@ namespace RoslynScraper
         /// <param name="project">The project to scan.</param>
         /// <param name="interfaceNames">List of interface names to search for.</param>
         /// <returns>A list of found interfaces.</returns>
-        private static async Task<List<InterfaceMethods>> GetInterfacesFromProject(Project project, List<string> interfaceNames)
+        private static async Task<List<InterfaceMethods>> GetInterfacesFromProjectAsync(Project project, List<string> interfaceNames)
         {
             var interfaces = new List<InterfaceMethods>();
 
             foreach (var document in project.Documents)
             {
-                var textLines = await GetDocumentLines(document);
+                var textLines = await GetDocumentLinesAsync(document);
 
                 foreach (var name in interfaceNames)
                 {
@@ -113,7 +113,7 @@ namespace RoslynScraper
         /// </summary>
         /// <param name="document">The document to read.</param>
         /// <returns>A list of lines, or an empty list if the document is not a regular source code document.</returns>
-        private static async Task<List<string>> GetDocumentLines(Document document)
+        private static async Task<List<string>> GetDocumentLinesAsync(Document document)
         {
             if (document.SourceCodeKind != SourceCodeKind.Regular || string.IsNullOrEmpty(document.FilePath))
                 return new List<string>();
@@ -128,10 +128,10 @@ namespace RoslynScraper
         /// <param name="interfaceNames">List of interface names to search for.</param>
         /// <param name="interfaces">List of already found interfaces.</param>
         /// <returns>A list of extracted data items.</returns>
-        private static async Task<List<Output.Item>> GetInterfacesFromDocument(Document document, List<string> interfaceNames, List<InterfaceMethods> interfaces)
+        private static async Task<List<Output.Item>> GetInterfacesFromDocumentAsync(Document document, List<string> interfaceNames, List<InterfaceMethods> interfaces)
         {
             var outputs = new List<Output.Item>();
-            var textLines = await GetDocumentLines(document);
+            var textLines = await GetDocumentLinesAsync(document);
 
             foreach (var name in interfaceNames)
             {
@@ -232,7 +232,7 @@ namespace RoslynScraper
         /// </summary>
         /// <param name="outputs">The output data to write.</param>
         /// <param name="outputPath">The path where to write the output.</param>
-        private static async Task WriteOutputs(List<Output.Item> outputs, string outputPath)
+        private static async Task WriteOutputsAsync(List<Output.Item> outputs, string outputPath)
         {
             var outputString = JsonConvert.SerializeObject(outputs, Formatting.Indented);
             await File.WriteAllTextAsync(outputPath, outputString);
