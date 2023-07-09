@@ -1,7 +1,7 @@
 ﻿using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
-using Newtonsoft.Json;
+using System.Text.Json;
 using RoslynScraper.Models;
 
 namespace RoslynScraper
@@ -234,7 +234,10 @@ namespace RoslynScraper
         /// <param name="outputPath">The path where to write the output.</param>
         private static async Task WriteOutputsAsync(List<Output.Item> outputs, string outputPath)
         {
-            var outputString = JsonConvert.SerializeObject(outputs, Formatting.Indented);
+            var outputString = JsonSerializer.Serialize(outputs, new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+            });
             await File.WriteAllTextAsync(outputPath, outputString);
         }
     }
